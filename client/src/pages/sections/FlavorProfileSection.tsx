@@ -70,31 +70,31 @@ export const FlavorProfileSection = (): JSX.Element => {
   const stars = Array(5).fill(0);
 
   return (
-    <div className="w-full max-w-[650px] mx-auto relative">
-      <header className="mb-8">
-        <h1 className="text-[40px] leading-[48px] [font-family:'Segoe_UI-Regular',Helvetica] font-normal text-[#313131] mb-4">
+    <div className="w-full max-w-[650px] mx-auto relative px-4 lg:px-0">
+      <header className="mb-6 md:mb-8">
+        <h1 className="text-2xl md:text-[40px] leading-8 md:leading-[48px] [font-family:'Segoe_UI-Regular',Helvetica] font-normal text-[#313131] mb-3 md:mb-4">
           Manuka Honey
         </h1>
 
-        <div className="flex items-baseline gap-2 mb-4">
+        <div className="flex items-baseline gap-2 mb-3 md:mb-4">
           <div className="flex items-baseline">
-            <span className="text-[38.3px] leading-10 [font-family:'Segoe_UI-Regular',Helvetica] font-normal text-[#313131]">
+            <span className="text-2xl md:text-[38.3px] leading-7 md:leading-10 [font-family:'Segoe_UI-Regular',Helvetica] font-normal text-[#313131]">
               UMF
             </span>
-            <span className="text-lg leading-[18px] [font-family:'Segoe_UI-Regular',Helvetica] font-normal text-[#313131]">
+            <span className="text-sm md:text-lg leading-4 md:leading-[18px] [font-family:'Segoe_UI-Regular',Helvetica] font-normal text-[#313131]">
               ™
             </span>
           </div>
-          <span className="text-[56.1px] leading-[52.8px] [font-family:'Segoe_UI-Regular',Helvetica] font-normal text-[#313131]">
+          <span className="text-3xl md:text-[56.1px] leading-8 md:leading-[52.8px] [font-family:'Segoe_UI-Regular',Helvetica] font-normal text-[#313131]">
             24+
           </span>
         </div>
 
         <div className="flex items-baseline gap-2">
-          <span className="text-[40px] leading-10 [font-family:'Segoe_UI-Regular',Helvetica] font-normal text-[#313131]">
+          <span className="text-2xl md:text-[40px] leading-7 md:leading-10 [font-family:'Segoe_UI-Regular',Helvetica] font-normal text-[#313131]">
             MGO
           </span>
-          <span className="text-[50.7px] leading-[52.8px] [font-family:'Segoe_UI-Regular',Helvetica] font-normal text-[#313131]">
+          <span className="text-3xl md:text-[50.7px] leading-8 md:leading-[52.8px] [font-family:'Segoe_UI-Regular',Helvetica] font-normal text-[#313131]">
             1122+
           </span>
         </div>
@@ -102,11 +102,12 @@ export const FlavorProfileSection = (): JSX.Element => {
 
       <Button
         variant="secondary"
-        className="inline-flex items-center gap-2 px-3 py-2.5 bg-[#66666626] rounded-[99px] mb-12 h-auto"
+        className="inline-flex items-center gap-2 px-3 py-2.5 bg-[#66666626] rounded-[99px] mb-8 md:mb-12 h-auto w-full md:w-auto justify-center md:justify-start"
+        data-testid="umf-mgo-info-button"
       >
         <img
           className="w-4 h-[17px]"
-          alt="InfoIcon icon"
+          alt="Info icon"
           src="/figmaAssets/button---learn-more-about-afterpay---opens-a-dialog---svg.svg"
         />
         <span className="[font-family:'Segoe_UI-Regular',Helvetica] font-normal text-[#666666] text-[13.9px] leading-[25px]">
@@ -114,7 +115,7 @@ export const FlavorProfileSection = (): JSX.Element => {
         </span>
       </Button>
 
-      <div className="flex items-center justify-between mb-8">
+      <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6 md:mb-8 space-y-3 md:space-y-0">
         <span className="text-lg leading-[23.9px] [font-family:'Segoe_UI-Regular',Helvetica] font-normal text-[#313131]">
           The Optimiser
         </span>
@@ -125,6 +126,7 @@ export const FlavorProfileSection = (): JSX.Element => {
               <StarIcon
                 key={index}
                 className="w-[18px] h-4 fill-current text-yellow-400"
+                data-testid={`star-${index}`}
               />
             ))}
           </div>
@@ -134,27 +136,22 @@ export const FlavorProfileSection = (): JSX.Element => {
         </div>
       </div>
 
-      <div className="mb-8">
-        <p className="text-lg leading-[27px] [font-family:'Segoe_UI-Regular',Helvetica] font-normal text-[#313131]">
+      <div className="mb-6 md:mb-8">
+        <p className="text-base md:text-lg leading-6 md:leading-[27px] [font-family:'Segoe_UI-Regular',Helvetica] font-normal text-[#313131]">
           For those times in life when quality comes first. This pure UMF™ 24+
-          Manuka
-          <br />
-          Honey is powerfully active, sourced from wild and rugged locations
-          around
-          <br />
-          Aotearoa New Zealand and great for almost all uses. It has a full,
-          delicious
-          <br />
-          flavour and your body will love you for it.
+          Manuka Honey is powerfully active, sourced from wild and rugged locations
+          around Aotearoa New Zealand and great for almost all uses. It has a full,
+          delicious flavour and your body will love you for it.
         </p>
       </div>
 
-      <div className="flex items-center gap-[40px] mb-16">
+      <div className="grid grid-cols-3 md:flex md:items-center gap-4 md:gap-[40px] mb-10 md:mb-16 justify-items-center">
         {certifications.map((cert, index) => (
           <div
             key={index}
-            className="w-[70px] h-[70px] bg-cover bg-center bg-no-repeat"
+            className="w-[50px] h-[50px] md:w-[70px] md:h-[70px] bg-cover bg-center bg-no-repeat"
             style={{ backgroundImage: `url(${cert})` }}
+            data-testid={`certification-${index}`}
           />
         ))}
       </div>
@@ -172,15 +169,16 @@ export const FlavorProfileSection = (): JSX.Element => {
           </span>
         </div>
 
-        <div className="grid grid-cols-4 gap-[9px] mb-8">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-[9px] mb-8">
           {productVariants.map((variant, index) => (
             <button
               key={index}
               onClick={() => setSelectedVariant(index)}
-              className={`w-[130px] h-[130px] rounded-[25px] bg-cover bg-center bg-no-repeat border ${
-                index === 0 ? "border-[#e87722]" : "border-transparent"
+              className={`w-full aspect-square max-w-[130px] mx-auto rounded-[25px] bg-cover bg-center bg-no-repeat border transition-all hover:scale-105 ${
+                index === selectedVariant ? "border-[#e87722] ring-2 ring-[#e87722]/30" : "border-transparent"
               }`}
               style={{ backgroundImage: `url(${variant.image})` }}
+              data-testid={`variant-${index}`}
             />
           ))}
         </div>
@@ -193,49 +191,43 @@ export const FlavorProfileSection = (): JSX.Element => {
           </span>
         </div>
 
-        <Card className="bg-[#f2f2f2] rounded-[25px] border-0 p-7">
+        <Card className="bg-[#f2f2f2] rounded-[25px] border-0 p-4 md:p-7">
           <CardContent className="p-0">
-            <div className="flex gap-4 mb-6">
+            <div className="flex flex-col md:flex-row gap-3 md:gap-4 mb-6">
               <Button
                 onClick={() => setSelectedPayment("one-time")}
-                className={`flex-1 h-[65px] rounded-[50px] border ${
+                className={`flex-1 h-[65px] rounded-[50px] border transition-all ${
                   selectedPayment === "one-time"
                     ? "bg-[#f1b434] border-[#f1b434] text-white"
-                    : "bg-white border-[#f1b434] text-[#313131]"
+                    : "bg-white border-[#f1b434] text-[#313131] hover:bg-[#f1b434]/10"
                 }`}
+                data-testid="one-time-payment-button"
               >
                 <div className="text-center">
-                  <div className="text-base leading-[17.6px] [font-family:'Segoe_UI-Regular',Helvetica] font-normal">
-                    One-time
-                    <br />
-                    purchase
+                  <div className="text-sm md:text-base leading-[17.6px] [font-family:'Segoe_UI-Regular',Helvetica] font-normal">
+                    One-time purchase
                   </div>
                   <div className="text-base leading-[17.6px] [font-family:'Segoe_UI-Regular',Helvetica] font-normal">
-                    $55.88
-                    <br />
-                    USD
+                    $55.88 USD
                   </div>
                 </div>
               </Button>
 
               <Button
                 onClick={() => setSelectedPayment("subscribe")}
-                className={`flex-1 h-[65px] rounded-[50px] border ${
+                className={`flex-1 h-[65px] rounded-[50px] border transition-all ${
                   selectedPayment === "subscribe"
                     ? "bg-[#f1b434] border-[#f1b434] text-white"
-                    : "bg-white border-[#f1b434] text-[#313131]"
+                    : "bg-white border-[#f1b434] text-[#313131] hover:bg-[#f1b434]/10"
                 }`}
+                data-testid="subscribe-payment-button"
               >
                 <div className="text-center">
-                  <div className="text-[15.9px] leading-[17.6px] [font-family:'Segoe_UI-Regular',Helvetica] font-normal">
-                    Subscribe & save
-                    <br />
-                    20%
+                  <div className="text-sm md:text-[15.9px] leading-[17.6px] [font-family:'Segoe_UI-Regular',Helvetica] font-normal">
+                    Subscribe & save 20%
                   </div>
                   <div className="text-base leading-[17.6px] [font-family:'Segoe_UI-Regular',Helvetica] font-normal">
-                    $44.70
-                    <br />
-                    USD
+                    $44.70 USD
                   </div>
                 </div>
               </Button>
@@ -251,24 +243,25 @@ export const FlavorProfileSection = (): JSX.Element => {
         </Card>
       </section>
 
-      <div className="flex items-end gap-[55px] mb-8">
+      <div className="flex flex-col md:flex-row md:items-end gap-4 md:gap-[55px] mb-8">
         <div className="flex flex-col gap-2">
           <span className="text-[13px] tracking-[0.40px] leading-[19.5px] [font-family:'Segoe_UI-Regular',Helvetica] font-normal text-[#313131]">
             SELECT QUANTITY
           </span>
 
-          <div className="flex items-center bg-[#f1b434] rounded-[50px] border border-white w-[195px] h-[47px]">
+          <div className="flex items-center bg-[#f1b434] rounded-[50px] border border-white w-full md:w-[195px] h-[47px]">
             <Button
               variant="ghost"
               size="sm"
               onClick={() => setQuantity(Math.max(1, quantity - 1))}
-              className="text-white text-lg tracking-[2.70px] leading-[19.8px] [font-family:'Segoe_UI-Regular',Helvetica] font-normal h-auto p-0 w-[55px]"
+              className="text-white text-lg tracking-[2.70px] leading-[19.8px] [font-family:'Segoe_UI-Regular',Helvetica] font-normal h-auto p-0 w-[55px] hover:bg-white/20"
+              data-testid="decrease-quantity-button"
             >
               -
             </Button>
 
             <div className="flex-1 text-center">
-              <span className="text-white text-base leading-[18.4px] [font-family:'Segoe_UI-Regular',Helvetica] font-normal">
+              <span className="text-white text-base leading-[18.4px] [font-family:'Segoe_UI-Regular',Helvetica] font-normal" data-testid="quantity-display">
                 {quantity}
               </span>
             </div>
@@ -277,59 +270,61 @@ export const FlavorProfileSection = (): JSX.Element => {
               variant="ghost"
               size="sm"
               onClick={() => setQuantity(quantity + 1)}
-              className="text-white text-lg tracking-[2.70px] leading-[19.8px] [font-family:'Segoe_UI-Regular',Helvetica] font-normal h-auto p-0 w-[55px]"
+              className="text-white text-lg tracking-[2.70px] leading-[19.8px] [font-family:'Segoe_UI-Regular',Helvetica] font-normal h-auto p-0 w-[55px] hover:bg-white/20"
+              data-testid="increase-quantity-button"
             >
               +
             </Button>
           </div>
         </div>
 
-        <Button className="bg-[#313131] rounded-[41px] border border-solid w-[400px] h-[47px] text-white text-[15px] text-center tracking-[1.00px] leading-[18px] [font-family:'Segoe_UI-Regular',Helvetica] font-normal">
+        <Button className="bg-[#313131] rounded-[41px] border border-solid w-full md:w-[400px] h-[47px] text-white text-[15px] text-center tracking-[1.00px] leading-[18px] [font-family:'Segoe_UI-Regular',Helvetica] font-normal hover:bg-[#313131]/90 transition-colors" data-testid="add-to-cart-button">
           ADD TO CART
         </Button>
       </div>
 
-      <Card className="bg-[#f2f2f2] rounded-3xl p-5 mb-8">
+      <Card className="bg-[#f2f2f2] rounded-3xl p-4 md:p-5 mb-8">
         <CardContent className="p-0">
           <div className="flex items-center justify-center gap-3 mb-6">
             <img
               className="w-6 h-6"
-              alt="Frame"
+              alt="Bundle decoration"
               src="/figmaAssets/frame-1484578602.svg"
             />
-            <h3 className="text-xl text-center [font-family:'Segoe_UI-Semibold',Helvetica] font-normal text-[#313131]">
+            <h3 className="text-lg md:text-xl text-center [font-family:'Segoe_UI-Semibold',Helvetica] font-normal text-[#313131]">
               Beauty Bundle
             </h3>
             <img
               className="w-6 h-6"
-              alt="Frame"
+              alt="Bundle decoration"
               src="/figmaAssets/frame-1484578601.svg"
             />
           </div>
 
-          <div className="flex items-center gap-6">
-            <div className="flex items-start gap-1 flex-1">
+          <div className="flex flex-col lg:flex-row items-center gap-6">
+            <div className="grid grid-cols-3 md:flex md:items-start gap-2 md:gap-1 flex-1 w-full">
               <div className="flex flex-col items-center gap-2.5 flex-1">
                 <img
-                  className="w-full h-[94.67px]"
+                  className="w-full h-[70px] md:h-[94.67px] object-contain"
                   alt="UMF 20+ Product"
                   src="/figmaAssets/image-3.svg"
                 />
-                <span className="text-lg text-center [font-family:'Segoe_UI-Semibold',Helvetica] font-normal text-[#313131]">
+                <span className="text-sm md:text-lg text-center [font-family:'Segoe_UI-Semibold',Helvetica] font-normal text-[#313131]">
                   UMF 20+
                 </span>
                 <Button
                   variant="outline"
-                  className="inline-flex items-center justify-center gap-1 px-3 py-1 rounded-[20px] border border-[#cdcdcd] h-auto"
+                  className="inline-flex items-center justify-center gap-1 px-2 md:px-3 py-1 rounded-[20px] border border-[#cdcdcd] h-auto text-xs md:text-sm"
+                  data-testid="bundle-umf20-size-selector"
                 >
-                  <span className="text-sm text-center [font-family:'Segoe_UI-Regular',Helvetica] font-normal text-[#313131]">
+                  <span className="text-xs md:text-sm text-center [font-family:'Segoe_UI-Regular',Helvetica] font-normal text-[#313131]">
                     250g
                   </span>
-                  <ChevronDownIcon className="w-4 h-4" />
+                  <ChevronDownIcon className="w-3 h-3 md:w-4 md:h-4" />
                 </Button>
               </div>
 
-              <div className="w-[13px] h-[97px] flex items-center justify-center">
+              <div className="hidden md:flex w-[13px] h-[97px] items-center justify-center">
                 <span className="text-lg text-center [font-family:'Segoe_UI-Semibold',Helvetica] font-normal text-[#313131]">
                   +
                 </span>
@@ -337,44 +332,45 @@ export const FlavorProfileSection = (): JSX.Element => {
 
               <div className="flex flex-col items-center gap-2.5 flex-1">
                 <img
-                  className="w-full h-[94.67px] object-cover"
+                  className="w-full h-[70px] md:h-[94.67px] object-contain"
                   alt="UMF 24+ Product"
                   src="/figmaAssets/image-2.svg"
                 />
-                <span className="text-lg text-center [font-family:'Segoe_UI-Semibold',Helvetica] font-normal text-[#313131]">
+                <span className="text-sm md:text-lg text-center [font-family:'Segoe_UI-Semibold',Helvetica] font-normal text-[#313131]">
                   UMF 24+
                 </span>
                 <Button
                   variant="outline"
-                  className="inline-flex items-center justify-center gap-1 px-3 py-1 rounded-[20px] border border-[#cdcdcd] h-auto"
+                  className="inline-flex items-center justify-center gap-1 px-2 md:px-3 py-1 rounded-[20px] border border-[#cdcdcd] h-auto text-xs md:text-sm"
+                  data-testid="bundle-umf24-size-selector"
                 >
-                  <span className="text-sm text-center [font-family:'Segoe_UI-Regular',Helvetica] font-normal text-[#313131]">
+                  <span className="text-xs md:text-sm text-center [font-family:'Segoe_UI-Regular',Helvetica] font-normal text-[#313131]">
                     250g
                   </span>
-                  <ChevronDownIcon className="w-4 h-4" />
+                  <ChevronDownIcon className="w-3 h-3 md:w-4 md:h-4" />
                 </Button>
               </div>
 
-              <div className="w-[13px] h-[97px] flex items-center justify-center">
+              <div className="hidden md:flex w-[13px] h-[97px] items-center justify-center">
                 <span className="text-lg text-center [font-family:'Segoe_UI-Semibold',Helvetica] font-normal text-[#313131]">
                   +
                 </span>
               </div>
 
-              <div className="flex flex-col items-start gap-2.5 flex-1">
+              <div className="flex flex-col items-center gap-2.5 flex-1">
                 <img
-                  className="w-full h-[94.67px]"
+                  className="w-full h-[70px] md:h-[94.67px] object-contain"
                   alt="Wooden Spoon"
                   src="/figmaAssets/image-152.svg"
                 />
-                <span className="text-lg text-center [font-family:'Segoe_UI-Semibold',Helvetica] font-normal text-[#313131] w-full">
+                <span className="text-sm md:text-lg text-center [font-family:'Segoe_UI-Semibold',Helvetica] font-normal text-[#313131] w-full">
                   Wooden Spoon
                 </span>
               </div>
             </div>
 
-            <div className="flex flex-col w-[260px] items-center gap-3">
-              <div className="inline-flex items-baseline gap-2">
+            <div className="flex flex-col w-full lg:w-[260px] items-center gap-3">
+              <div className="flex flex-wrap items-baseline justify-center gap-2">
                 <span className="text-sm text-center [font-family:'Segoe_UI-Regular',Helvetica] font-normal text-[#313131] line-through">
                   $478.75 USD
                 </span>
@@ -386,7 +382,7 @@ export const FlavorProfileSection = (): JSX.Element => {
                 </Badge>
               </div>
 
-              <Button className="w-full bg-[#313131] rounded-[50px] border border-solid text-white text-base text-center tracking-[1.50px] leading-[17.6px] [font-family:'Segoe_UI-Regular',Helvetica] font-normal h-auto py-3.5">
+              <Button className="w-full bg-[#313131] rounded-[50px] border border-solid text-white text-sm md:text-base text-center tracking-[1.50px] leading-[17.6px] [font-family:'Segoe_UI-Regular',Helvetica] font-normal h-auto py-3.5 hover:bg-[#313131]/90 transition-colors" data-testid="add-bundle-to-cart-button">
                 ADD BUNDLE TO CART
               </Button>
             </div>
@@ -472,28 +468,31 @@ export const FlavorProfileSection = (): JSX.Element => {
             </span>
           </div>
 
-          <div className="flex gap-[5px] mb-12">
-            {umfScaleItems.map((item, index) => (
-              <div
-                key={index}
-                className="w-[88px] h-6 border-b-[0.8px] border-solid relative"
-                style={{ borderBottomColor: item.color }}
-              >
-                <span
-                  className={`absolute -top-0.5 left-2 text-[13.2px] text-center tracking-[1.00px] leading-[14px] [font-family:'Segoe_UI-Regular',Helvetica] font-normal ${
-                    item.active ? `text-[${item.color}]` : "text-[#313131]"
-                  }`}
+          <div className="overflow-x-auto mb-12">
+            <div className="flex gap-[5px] min-w-[616px]">
+              {umfScaleItems.map((item, index) => (
+                <div
+                  key={index}
+                  className="w-[88px] h-6 border-b-[0.8px] border-solid relative"
+                  style={{ borderBottomColor: item.color }}
+                  data-testid={`umf-scale-${index}`}
                 >
-                  {item.label}
-                </span>
-                {item.active && (
-                  <div
-                    className="absolute top-5 left-0 w-[88px] h-[3px]"
-                    style={{ backgroundColor: item.color }}
-                  />
-                )}
-              </div>
-            ))}
+                  <span
+                    className={`absolute -top-0.5 left-2 text-[13.2px] text-center tracking-[1.00px] leading-[14px] [font-family:'Segoe_UI-Regular',Helvetica] font-normal ${
+                      item.active ? `text-[${item.color}]` : "text-[#313131]"
+                    }`}
+                  >
+                    {item.label}
+                  </span>
+                  {item.active && (
+                    <div
+                      className="absolute top-5 left-0 w-[88px] h-[3px]"
+                      style={{ backgroundColor: item.color }}
+                    />
+                  )}
+                </div>
+              ))}
+            </div>
           </div>
 
           <div className="mb-8">
