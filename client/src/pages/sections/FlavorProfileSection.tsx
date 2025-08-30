@@ -1,9 +1,10 @@
-import { ChevronDownIcon, InfoIcon, StarIcon } from "lucide-react";
+import { ChevronDownIcon, InfoIcon, StarIcon, XIcon } from "lucide-react";
 import React, { useState } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { useCart } from '@/contexts/CartContext';
 import { useToast } from '@/hooks/use-toast';
 
@@ -13,6 +14,7 @@ export const FlavorProfileSection = (): JSX.Element => {
   const [quantity, setQuantity] = useState(1);
   const [bundleUmf20Size, setBundleUmf20Size] = useState(1); // Index for 250g
   const [bundleUmf24Size, setBundleUmf24Size] = useState(1); // Index for 250g
+  const [isUmfMgoModalOpen, setIsUmfMgoModalOpen] = useState(false);
   const { addToCart } = useCart();
   const { toast } = useToast();
 
@@ -195,6 +197,7 @@ export const FlavorProfileSection = (): JSX.Element => {
 
       <Button
         variant="secondary"
+        onClick={() => setIsUmfMgoModalOpen(true)}
         className="inline-flex items-center gap-2 px-3 py-2.5 bg-[#66666626] rounded-[99px] mb-8 md:mb-12 h-auto w-full md:w-auto justify-center md:justify-start"
         data-testid="umf-mgo-info-button"
       >
@@ -618,6 +621,93 @@ export const FlavorProfileSection = (): JSX.Element => {
           </div>
         </div>
       </div>
+
+      {/* UMF and MGO Info Modal */}
+      <Dialog open={isUmfMgoModalOpen} onOpenChange={setIsUmfMgoModalOpen}>
+        <DialogContent className="max-w-[90vw] sm:max-w-md md:max-w-lg max-h-[90vh] overflow-y-auto p-6 bg-white rounded-lg">
+          <DialogHeader className="text-left">
+            <DialogTitle className="text-lg font-semibold text-[#313131] mb-4">
+              UMF and MGO Information
+            </DialogTitle>
+          </DialogHeader>
+          
+          <div className="space-y-6">
+            {/* UMF Section */}
+            <div>
+              <p className="text-sm text-[#313131] mb-3">
+                <strong>UMF</strong> is the strength and purity rating of Manuka honey.
+              </p>
+              
+              {/* UMF Rating Scale */}
+              <div className="flex flex-wrap items-center gap-1 sm:gap-2 mb-3">
+                {[
+                  { label: "10+", color: "#8B4513" },
+                  { label: "15+", color: "#CD853F" },
+                  { label: "20+", color: "#DAA520" },
+                  { label: "24+", color: "#FFD700" },
+                  { label: "26+", color: "#32CD32" },
+                  { label: "28+", color: "#008000" },
+                  { label: "30+", color: "#006400" }
+                ].map((item, index) => (
+                  <span
+                    key={index}
+                    className="px-2 py-1 text-xs font-medium text-white rounded"
+                    style={{ backgroundColor: item.color }}
+                  >
+                    {item.label}
+                  </span>
+                ))}
+              </div>
+              
+              <p className="text-xs text-[#666] mb-4">
+                The higher the number, the greater the potency and rarity of Manuka honey.
+              </p>
+            </div>
+
+            {/* MGO Section */}
+            <div>
+              <p className="text-sm text-[#313131] mb-3">
+                <strong>MGO</strong> is the key natural compound that gives Manuka honey its special antibacterial strength.
+              </p>
+              
+              {/* MGO Rating Scale */}
+              <div className="flex flex-wrap items-center gap-1 sm:gap-2 mb-3">
+                {[
+                  { label: "263+", color: "#8B4513" },
+                  { label: "514+", color: "#CD853F" },
+                  { label: "829+", color: "#DAA520" },
+                  { label: "1122+", color: "#FFD700" },
+                  { label: "1282+", color: "#32CD32" },
+                  { label: "1450+", color: "#008000" },
+                  { label: "1620+", color: "#006400" }
+                ].map((item, index) => (
+                  <span
+                    key={index}
+                    className="px-2 py-1 text-xs font-medium text-white rounded"
+                    style={{ backgroundColor: item.color }}
+                  >
+                    {item.label}
+                  </span>
+                ))}
+              </div>
+              
+              <p className="text-xs text-[#666] mb-4">
+                The higher the number, the higher the antibacterial properties in the honey.
+              </p>
+            </div>
+
+            {/* Close Button */}
+            <div className="flex justify-center pt-4">
+              <Button
+                onClick={() => setIsUmfMgoModalOpen(false)}
+                className="px-8 py-2 bg-[#313131] text-white rounded-full hover:bg-[#313131]/90"
+              >
+                Close
+              </Button>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
