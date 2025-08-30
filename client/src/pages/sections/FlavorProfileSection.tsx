@@ -696,7 +696,7 @@ export const FlavorProfileSection = (): JSX.Element => {
             </div>
 
             {/* Close Button */}
-            <div className="flex justify-center mb-4">
+            <div className="flex justify-center">
               <Button
                 onClick={() => setIsUmfMgoModalOpen(false)}
                 className="px-6 py-2 bg-[#313131] text-white rounded-lg hover:bg-[#313131]/90 text-sm"
@@ -704,25 +704,6 @@ export const FlavorProfileSection = (): JSX.Element => {
               >
                 Close
               </Button>
-            </div>
-
-            {/* Product Images */}
-            <div className="flex justify-center items-center gap-4">
-              <img
-                src="/figmaAssets/image-3.svg"
-                alt="Manuka Honey UMF 20+"
-                className="w-12 h-16 sm:w-16 sm:h-20 object-contain"
-              />
-              <img
-                src="/figmaAssets/image-2.svg"
-                alt="Manuka Honey UMF 24+"
-                className="w-12 h-16 sm:w-16 sm:h-20 object-contain"
-              />
-              <img
-                src="/figmaAssets/label---label-paints.png"
-                alt="Manuka Honey UMF 15+"
-                className="w-12 h-16 sm:w-16 sm:h-20 object-contain"
-              />
             </div>
           </div>
         </DialogContent>
