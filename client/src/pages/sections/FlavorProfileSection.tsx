@@ -39,6 +39,51 @@ export const FlavorProfileSection = (): JSX.Element => {
     }
   };
 
+  const handleAddBundleToCart = async () => {
+    try {
+      // Add UMF 20+ honey (250g)
+      await addToCart({
+        productId: 101, // Unique ID for UMF 20+
+        productName: "Manuka Honey UMF 20+",
+        productPrice: "120.00",
+        productImage: "/figmaAssets/image-3.svg",
+        productVariant: "250g",
+        quantity: 1,
+      });
+
+      // Add UMF 24+ honey (250g)
+      await addToCart({
+        productId: 102, // Unique ID for UMF 24+
+        productName: "Manuka Honey UMF 24+",
+        productPrice: "180.00",
+        productImage: "/figmaAssets/image-151.svg",
+        productVariant: "250g",
+        quantity: 1,
+      });
+
+      // Add Wooden Spoon
+      await addToCart({
+        productId: 103, // Unique ID for Wooden Spoon
+        productName: "Wooden Spoon",
+        productPrice: "15.00",
+        productImage: "/figmaAssets/image-152.svg",
+        productVariant: "Standard",
+        quantity: 1,
+      });
+      
+      toast({
+        title: "Beauty Bundle Added!",
+        description: "UMF 20+, UMF 24+ and Wooden Spoon added to your cart with 10% savings!",
+      });
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to add bundle to cart. Please try again.",
+        variant: "destructive",
+      });
+    }
+  };
+
   const productVariants = [
     {
       size: "125g | 4.4oz",
@@ -415,7 +460,11 @@ export const FlavorProfileSection = (): JSX.Element => {
                 </Badge>
               </div>
 
-              <Button className="w-full bg-[#313131] rounded-[50px] border border-solid text-white text-sm md:text-base text-center tracking-[1.50px] leading-[17.6px] [font-family:'Segoe_UI-Regular',Helvetica] font-normal h-auto py-3.5 hover:bg-[#313131]/90 transition-colors" data-testid="add-bundle-to-cart-button">
+              <Button 
+                onClick={handleAddBundleToCart}
+                className="w-full bg-[#313131] rounded-[50px] border border-solid text-white text-sm md:text-base text-center tracking-[1.50px] leading-[17.6px] [font-family:'Segoe_UI-Regular',Helvetica] font-normal h-auto py-3.5 hover:bg-[#313131]/90 transition-colors" 
+                data-testid="add-bundle-to-cart-button"
+              >
                 ADD BUNDLE TO CART
               </Button>
             </div>
