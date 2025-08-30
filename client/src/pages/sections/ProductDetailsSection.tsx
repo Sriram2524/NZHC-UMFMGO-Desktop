@@ -3,9 +3,12 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { MenuIcon, XIcon } from "lucide-react";
+import { useCart } from '@/contexts/CartContext';
+import { CartSidebar } from '@/components/CartSidebar';
 
 export const ProductDetailsSection = (): JSX.Element => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { cartCount, setIsCartOpen } = useCart();
   
   const navigationItems = [
     { label: "Shop", href: "#" },
@@ -83,16 +86,18 @@ export const ProductDetailsSection = (): JSX.Element => {
                   src="/figmaAssets/details-modal---details---slot---button-dialog---search.svg"
                 />
 
-                <div className="relative w-11 h-11 flex items-center justify-center">
-                  <img
-                    className="w-6 h-6"
-                    alt="Shopping Cart"
-                    src="/figmaAssets/svg-5.svg"
-                  />
-                  <Badge className="absolute -top-1 -right-1 w-[22px] h-[22px] bg-[#f1b434] text-[#313131] text-xs rounded-[11.25px] flex items-center justify-center p-0 hover:bg-[#f1b434]" data-testid="cart-badge">
-                    0
-                  </Badge>
-                </div>
+                <CartSidebar>
+                  <div className="relative w-11 h-11 flex items-center justify-center cursor-pointer touch-target mobile-press" data-testid="desktop-cart-trigger">
+                    <img
+                      className="w-6 h-6"
+                      alt="Shopping Cart"
+                      src="/figmaAssets/svg-5.svg"
+                    />
+                    <Badge className="absolute -top-1 -right-1 w-[22px] h-[22px] bg-[#f1b434] text-[#313131] text-xs rounded-[11.25px] flex items-center justify-center p-0 hover:bg-[#f1b434]" data-testid="cart-badge">
+                      {cartCount}
+                    </Badge>
+                  </div>
+                </CartSidebar>
               </div>
             </div>
           </div>
@@ -165,16 +170,18 @@ export const ProductDetailsSection = (): JSX.Element => {
                 src="/figmaAssets/link.svg"
               />
               
-              <div className="relative flex items-center justify-center touch-target mobile-press">
-                <img
-                  className="w-6 h-6 md:w-7 md:h-7"
-                  alt="Shopping Cart"
-                  src="/figmaAssets/svg-5.svg"
-                />
-                <Badge className="absolute -top-1 -right-1 w-4 h-4 md:w-[18px] md:h-[18px] bg-[#f1b434] text-[#313131] text-[10px] md:text-xs rounded-full flex items-center justify-center p-0 hover:bg-[#f1b434]" data-testid="mobile-cart-badge">
-                  0
-                </Badge>
-              </div>
+              <CartSidebar>
+                <div className="relative flex items-center justify-center touch-target mobile-press" data-testid="mobile-cart-trigger">
+                  <img
+                    className="w-6 h-6 md:w-7 md:h-7"
+                    alt="Shopping Cart"
+                    src="/figmaAssets/svg-5.svg"
+                  />
+                  <Badge className="absolute -top-1 -right-1 w-4 h-4 md:w-[18px] md:h-[18px] bg-[#f1b434] text-[#313131] text-[10px] md:text-xs rounded-full flex items-center justify-center p-0 hover:bg-[#f1b434]" data-testid="mobile-cart-badge">
+                    {cartCount}
+                  </Badge>
+                </div>
+              </CartSidebar>
             </div>
           </div>
         </header>

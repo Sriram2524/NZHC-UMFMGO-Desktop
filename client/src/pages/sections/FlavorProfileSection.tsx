@@ -4,11 +4,40 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
+import { useCart } from '@/contexts/CartContext';
+import { useToast } from '@/hooks/use-toast';
 
 export const FlavorProfileSection = (): JSX.Element => {
   const [selectedVariant, setSelectedVariant] = useState(0);
   const [selectedPayment, setSelectedPayment] = useState("one-time");
   const [quantity, setQuantity] = useState(1);
+  const { addToCart } = useCart();
+  const { toast } = useToast();
+
+  const handleAddToCart = async () => {
+    try {
+      const selectedProduct = productVariants[selectedVariant];
+      await addToCart({
+        productId: selectedVariant + 1, // Simple ID based on variant index
+        productName: "Manuka Honey UMF 15+",
+        productPrice: selectedPayment === "subscribe" ? "45.00" : "50.00",
+        productImage: selectedProduct.image,
+        productVariant: selectedProduct.size,
+        quantity: quantity,
+      });
+      
+      toast({
+        title: "Added to cart!",
+        description: `${quantity} × Manuka Honey UMF 15+ (${selectedProduct.size}) added to your cart.`,
+      });
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to add item to cart. Please try again.",
+        variant: "destructive",
+      });
+    }
+  };
 
   const productVariants = [
     {
@@ -278,7 +307,11 @@ export const FlavorProfileSection = (): JSX.Element => {
           </div>
         </div>
 
-        <Button className="bg-[#313131] rounded-[41px] border border-solid w-full md:w-[400px] h-[47px] text-white text-[15px] text-center tracking-[1.00px] leading-[18px] [font-family:'Segoe_UI-Regular',Helvetica] font-normal hover:bg-[#313131]/90 transition-colors touch-target mobile-press mobile-optimized" data-testid="add-to-cart-button">
+        <Button 
+          onClick={handleAddToCart}
+          className="bg-[#313131] rounded-[41px] border border-solid w-full md:w-[400px] h-[47px] text-white text-[15px] text-center tracking-[1.00px] leading-[18px] [font-family:'Segoe_UI-Regular',Helvetica] font-normal hover:bg-[#313131]/90 transition-colors touch-target mobile-press mobile-optimized" 
+          data-testid="add-to-cart-button"
+        >
           ADD TO CART
         </Button>
       </div>
