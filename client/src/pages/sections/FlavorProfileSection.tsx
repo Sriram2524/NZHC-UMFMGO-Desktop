@@ -22,6 +22,14 @@ export const FlavorProfileSection = (): JSX.Element => {
     "UMF 24+": ["65.00", "180.00", "320.00", "580.00"]
   };
 
+  // Calculate dynamic bundle pricing
+  const woodenSpoonPrice = 15.00;
+  const umf20Price = parseFloat(bundlePrices["UMF 20+"][bundleUmf20Size]);
+  const umf24Price = parseFloat(bundlePrices["UMF 24+"][bundleUmf24Size]);
+  const originalBundleTotal = umf20Price + umf24Price + woodenSpoonPrice;
+  const discountedBundleTotal = originalBundleTotal * 0.9; // 10% discount
+  const savings = originalBundleTotal - discountedBundleTotal;
+
   const handleAddToCart = async () => {
     try {
       const selectedProduct = productVariants[selectedVariant];
@@ -463,13 +471,13 @@ export const FlavorProfileSection = (): JSX.Element => {
             <div className="flex flex-col w-full lg:w-[260px] items-center gap-3">
               <div className="flex flex-wrap items-baseline justify-center gap-2">
                 <span className="text-sm text-center [font-family:'Segoe_UI-Regular',Helvetica] font-normal text-[#313131] line-through">
-                  $478.75 USD
+                  ${originalBundleTotal.toFixed(2)} USD
                 </span>
                 <span className="text-lg text-center [font-family:'Segoe_UI-Semibold',Helvetica] font-normal text-[#313131]">
-                  $430.88 USD
+                  ${discountedBundleTotal.toFixed(2)} USD
                 </span>
                 <Badge className="bg-transparent text-[#087f1a] text-sm [font-family:'Segoe_UI-Semibold',Helvetica] font-normal">
-                  Save 10%
+                  Save ${savings.toFixed(2)}
                 </Badge>
               </div>
 
