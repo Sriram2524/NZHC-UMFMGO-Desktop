@@ -11,8 +11,16 @@ export const FlavorProfileSection = (): JSX.Element => {
   const [selectedVariant, setSelectedVariant] = useState(0);
   const [selectedPayment, setSelectedPayment] = useState("one-time");
   const [quantity, setQuantity] = useState(1);
+  const [bundleUmf20Size, setBundleUmf20Size] = useState(1); // Index for 250g
+  const [bundleUmf24Size, setBundleUmf24Size] = useState(1); // Index for 250g
   const { addToCart } = useCart();
   const { toast } = useToast();
+
+  const bundleSizes = ["50g", "250g", "500g", "1kg"];
+  const bundlePrices = {
+    "UMF 20+": ["45.00", "120.00", "220.00", "400.00"],
+    "UMF 24+": ["65.00", "180.00", "320.00", "580.00"]
+  };
 
   const handleAddToCart = async () => {
     try {
@@ -41,23 +49,26 @@ export const FlavorProfileSection = (): JSX.Element => {
 
   const handleAddBundleToCart = async () => {
     try {
-      // Add UMF 20+ honey (250g)
+      const umf20Size = bundleSizes[bundleUmf20Size];
+      const umf24Size = bundleSizes[bundleUmf24Size];
+      
+      // Add UMF 20+ honey with selected size
       await addToCart({
         productId: 101, // Unique ID for UMF 20+
         productName: "Manuka Honey UMF 20+",
-        productPrice: "120.00",
+        productPrice: bundlePrices["UMF 20+"][bundleUmf20Size],
         productImage: "/figmaAssets/image-3.svg",
-        productVariant: "250g",
+        productVariant: umf20Size,
         quantity: 1,
       });
 
-      // Add UMF 24+ honey (250g)
+      // Add UMF 24+ honey with selected size
       await addToCart({
         productId: 102, // Unique ID for UMF 24+
         productName: "Manuka Honey UMF 24+",
-        productPrice: "180.00",
+        productPrice: bundlePrices["UMF 24+"][bundleUmf24Size],
         productImage: "/figmaAssets/image-151.svg",
-        productVariant: "250g",
+        productVariant: umf24Size,
         quantity: 1,
       });
 
@@ -73,7 +84,7 @@ export const FlavorProfileSection = (): JSX.Element => {
       
       toast({
         title: "Beauty Bundle Added!",
-        description: "UMF 20+, UMF 24+ and Wooden Spoon added to your cart with 10% savings!",
+        description: `UMF 20+ (${umf20Size}), UMF 24+ (${umf24Size}) and Wooden Spoon added to your cart with 10% savings!`,
       });
     } catch (error) {
       toast({
@@ -392,11 +403,12 @@ export const FlavorProfileSection = (): JSX.Element => {
                 </span>
                 <Button
                   variant="outline"
+                  onClick={() => setBundleUmf20Size((prev) => (prev + 1) % bundleSizes.length)}
                   className="inline-flex items-center justify-center gap-1 px-2 md:px-3 py-1 rounded-[20px] border border-[#cdcdcd] h-auto text-xs md:text-sm"
                   data-testid="bundle-umf20-size-selector"
                 >
                   <span className="text-xs md:text-sm text-center [font-family:'Segoe_UI-Regular',Helvetica] font-normal text-[#313131]">
-                    250g
+                    {bundleSizes[bundleUmf20Size]}
                   </span>
                   <ChevronDownIcon className="w-3 h-3 md:w-4 md:h-4" />
                 </Button>
@@ -419,11 +431,12 @@ export const FlavorProfileSection = (): JSX.Element => {
                 </span>
                 <Button
                   variant="outline"
+                  onClick={() => setBundleUmf24Size((prev) => (prev + 1) % bundleSizes.length)}
                   className="inline-flex items-center justify-center gap-1 px-2 md:px-3 py-1 rounded-[20px] border border-[#cdcdcd] h-auto text-xs md:text-sm"
                   data-testid="bundle-umf24-size-selector"
                 >
                   <span className="text-xs md:text-sm text-center [font-family:'Segoe_UI-Regular',Helvetica] font-normal text-[#313131]">
-                    250g
+                    {bundleSizes[bundleUmf24Size]}
                   </span>
                   <ChevronDownIcon className="w-3 h-3 md:w-4 md:h-4" />
                 </Button>
