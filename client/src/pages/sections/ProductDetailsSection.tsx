@@ -104,7 +104,7 @@ export const ProductDetailsSection = (): JSX.Element => {
                 <Button
                   variant="ghost"
                   size="sm"
-                  className="p-2"
+                  className="p-2 touch-target mobile-press"
                   data-testid="mobile-menu-trigger"
                 >
                   <MenuIcon className="h-6 w-6 text-[#313131]" />
@@ -165,7 +165,7 @@ export const ProductDetailsSection = (): JSX.Element => {
                 src="/figmaAssets/link.svg"
               />
               
-              <div className="relative flex items-center justify-center">
+              <div className="relative flex items-center justify-center touch-target mobile-press">
                 <img
                   className="w-6 h-6 md:w-7 md:h-7"
                   alt="Shopping Cart"

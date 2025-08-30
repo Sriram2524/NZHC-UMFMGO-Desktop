@@ -64,7 +64,7 @@ export const ImageGallerySection = (): JSX.Element => {
             variant="ghost"
             size="sm"
             onClick={prevImage}
-            className="bg-black/20 text-white hover:bg-black/40 rounded-full p-2"
+            className="bg-black/20 text-white hover:bg-black/40 rounded-full p-2 touch-target mobile-press mobile-optimized"
             data-testid="prev-image-button"
           >
             <ChevronLeftIcon className="h-6 w-6" />
@@ -73,7 +73,7 @@ export const ImageGallerySection = (): JSX.Element => {
             variant="ghost"
             size="sm"
             onClick={nextImage}
-            className="bg-black/20 text-white hover:bg-black/40 rounded-full p-2"
+            className="bg-black/20 text-white hover:bg-black/40 rounded-full p-2 touch-target mobile-press mobile-optimized"
             data-testid="next-image-button"
           >
             <ChevronRightIcon className="h-6 w-6" />
@@ -86,8 +86,8 @@ export const ImageGallerySection = (): JSX.Element => {
             <button
               key={index}
               onClick={() => setCurrentImageIndex(index)}
-              className={`w-2 h-2 rounded-full ${
-                index === currentImageIndex ? 'bg-white' : 'bg-white/50'
+              className={`w-3 h-3 rounded-full touch-target mobile-press transition-all ${
+                index === currentImageIndex ? 'bg-white scale-125' : 'bg-white/50 hover:bg-white/75'
               }`}
               data-testid={`image-indicator-${index}`}
             />
@@ -217,19 +217,19 @@ export const ImageGallerySection = (): JSX.Element => {
       
       {/* Mobile Thumbnail Strip */}
       <div className="md:hidden">
-        <ScrollArea className="w-full">
+        <ScrollArea className="w-full mobile-scroll">
           <div className="flex space-x-3 px-2 py-4">
             {galleryImages.map((image, index) => (
               <Card
                 key={image.id}
-                className={`bg-[#fbf9f6] border-0 overflow-hidden cursor-pointer transition-all shrink-0 ${
+                className={`bg-[#fbf9f6] border-0 overflow-hidden cursor-pointer transition-all shrink-0 mobile-press mobile-optimized ${
                   index === currentImageIndex ? 'ring-2 ring-[#f1b434] scale-105' : 'hover:scale-105'
                 }`}
                 onClick={() => setCurrentImageIndex(index)}
               >
                 <CardContent className="p-0">
                   <div
-                    className="w-20 h-20 bg-cover bg-center bg-no-repeat"
+                    className="w-20 h-20 bg-cover bg-center bg-no-repeat touch-target"
                     style={{ backgroundImage: `url(${image.src})` }}
                     data-testid={`mobile-thumbnail-${index}`}
                   />

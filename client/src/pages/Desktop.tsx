@@ -7,13 +7,13 @@ import { ProductDetailsSection } from "./sections/ProductDetailsSection";
 
 export const Desktop = (): JSX.Element => {
   return (
-    <div className="flex flex-col w-full max-w-[1440px] mx-auto items-start relative bg-[#fbf9f6] min-h-screen">
+    <div className="flex flex-col w-full max-w-[1440px] mx-auto items-start relative bg-[#fbf9f6] min-h-screen mobile-optimized">
       <ProductDetailsSection />
-      <main className="flex flex-col lg:flex-row items-start gap-6 lg:gap-0 relative self-stretch w-full flex-1 px-4 lg:px-0 py-6 lg:py-0">
-        <div className="w-full lg:w-auto lg:flex-shrink-0">
+      <main className="flex flex-col lg:flex-row items-start gap-6 lg:gap-0 relative self-stretch w-full flex-1 mobile-padding lg:px-0 py-6 lg:py-0">
+        <div className="w-full lg:w-auto lg:flex-shrink-0 mobile-optimized">
           <ImageGallerySection />
         </div>
-        <div className="w-full lg:flex-1 lg:pl-8">
+        <div className="w-full lg:flex-1 lg:pl-8 mobile-optimized">
           <FlavorProfileSection />
         </div>
       </main>

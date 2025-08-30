@@ -174,7 +174,7 @@ export const FlavorProfileSection = (): JSX.Element => {
             <button
               key={index}
               onClick={() => setSelectedVariant(index)}
-              className={`w-full aspect-square max-w-[130px] mx-auto rounded-[25px] bg-cover bg-center bg-no-repeat border transition-all hover:scale-105 ${
+              className={`w-full aspect-square max-w-[130px] mx-auto rounded-[25px] bg-cover bg-center bg-no-repeat border transition-all hover:scale-105 touch-target mobile-press mobile-optimized ${
                 index === selectedVariant ? "border-[#e87722] ring-2 ring-[#e87722]/30" : "border-transparent"
               }`}
               style={{ backgroundImage: `url(${variant.image})` }}
@@ -196,7 +196,7 @@ export const FlavorProfileSection = (): JSX.Element => {
             <div className="flex flex-col md:flex-row gap-3 md:gap-4 mb-6">
               <Button
                 onClick={() => setSelectedPayment("one-time")}
-                className={`flex-1 h-[65px] rounded-[50px] border transition-all ${
+                className={`flex-1 h-[65px] rounded-[50px] border transition-all touch-target mobile-press ${
                   selectedPayment === "one-time"
                     ? "bg-[#f1b434] border-[#f1b434] text-white"
                     : "bg-white border-[#f1b434] text-[#313131] hover:bg-[#f1b434]/10"
@@ -215,7 +215,7 @@ export const FlavorProfileSection = (): JSX.Element => {
 
               <Button
                 onClick={() => setSelectedPayment("subscribe")}
-                className={`flex-1 h-[65px] rounded-[50px] border transition-all ${
+                className={`flex-1 h-[65px] rounded-[50px] border transition-all touch-target mobile-press ${
                   selectedPayment === "subscribe"
                     ? "bg-[#f1b434] border-[#f1b434] text-white"
                     : "bg-white border-[#f1b434] text-[#313131] hover:bg-[#f1b434]/10"
@@ -278,7 +278,7 @@ export const FlavorProfileSection = (): JSX.Element => {
           </div>
         </div>
 
-        <Button className="bg-[#313131] rounded-[41px] border border-solid w-full md:w-[400px] h-[47px] text-white text-[15px] text-center tracking-[1.00px] leading-[18px] [font-family:'Segoe_UI-Regular',Helvetica] font-normal hover:bg-[#313131]/90 transition-colors" data-testid="add-to-cart-button">
+        <Button className="bg-[#313131] rounded-[41px] border border-solid w-full md:w-[400px] h-[47px] text-white text-[15px] text-center tracking-[1.00px] leading-[18px] [font-family:'Segoe_UI-Regular',Helvetica] font-normal hover:bg-[#313131]/90 transition-colors touch-target mobile-press mobile-optimized" data-testid="add-to-cart-button">
           ADD TO CART
         </Button>
       </div>

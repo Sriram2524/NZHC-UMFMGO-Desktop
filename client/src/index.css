@@ -196,3 +196,70 @@
     font-feature-settings: "rlig" 1, "calt" 1;
   }
 }
+
+/* Mobile-first responsive enhancements */
+@layer utilities {
+  /* Touch-friendly tap targets */
+  .touch-target {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Mobile-optimized scrolling */
+  .mobile-scroll {
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+  }
+  
+  /* Prevent zoom on input focus for iOS */
+  @media screen and (max-width: 768px) {
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    textarea,
+    select {
+      font-size: 16px;
+    }
+  }
+  
+  /* Mobile-specific animations */
+  .mobile-bounce {
+    animation: mobile-bounce 0.3s ease-out;
+  }
+  
+  /* Optimize for mobile performance */
+  .mobile-optimized {
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+  }
+  
+  /* Mobile-friendly hover states */
+  @media (hover: none) {
+    .hover\:scale-105:hover {
+      transform: none;
+    }
+    
+    .mobile-press:active {
+      transform: scale(0.98);
+      transition: transform 0.1s ease;
+    }
+  }
+  
+  /* Enhanced mobile spacing */
+  .mobile-padding {
+    padding: 1rem;
+  }
+  
+  @media (min-width: 768px) {
+    .mobile-padding {
+      padding: 2rem;
+    }
+  }
+}
+
+@keyframes mobile-bounce {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
